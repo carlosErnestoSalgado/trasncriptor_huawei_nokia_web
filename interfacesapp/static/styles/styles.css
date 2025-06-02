@@ -1,0 +1,113 @@
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --dark-color: #212529;
+    --light-color: #f8f9fa;
+}
+
+body {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.brand-arrow {
+    font-size: 2rem;
+    color: var(--secondary-color);
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,.1);
+}
+
+.dropdown-item:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+div select option:hover{
+    background-color: var(--primary-color);
+    color: white;
+}
+
+main {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    padding: 2rem;
+}
+
+footer {
+    box-shadow: 0 -2px 4px rgba(0,0,0,.1);
+}
+
+footer a:hover {
+    color: var(--primary-color) !important;
+}
+
+.logo-img {
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Contenedor del carrusel con relación de aspecto 16:9 */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+}
+
+/* Imágenes que se adaptan al contenedor */
+.carousel-inner, .carousel-item, .carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Botones de navegación negros */
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Títulos separados debajo del carrusel */
+.carousel-caption-external {
+    padding: 15px 0;
+    text-align: center;
+    background: #f8f9fa;
+    color: #333;
+}

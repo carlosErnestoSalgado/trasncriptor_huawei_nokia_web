@@ -1,0 +1,39 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+    <h2>Generar Servicio GPS</h2>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title  mb-0">
+                            <i class="bi bi-geo-alt me-2"></i> Servicio GPS
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="vlanField" class="form-label">VLAN ID</label>
+                                <input type="number" name="vlan" id="vlanField" class="form-control" min="1" max="4094" required placeholder="Ej: 100">
+                                <div class="invalid-feedback">
+                                    Debe ser una vlan válida
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ipField" class="form-label">Dirección IP</label>
+                                <input type="text" name="ip_address" id="ipField" class="form-control" required placeholder="Ej: 192.168.1.1" pattern="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$">
+                                <div class="invalid-feedback">
+                                    Debe ingresar una dirección válida
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 mt-3">
+                                <i class="bi bi-check-circle me-2"></i>Generar
+                            </button>
+                        </form>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+{% endblock  %}

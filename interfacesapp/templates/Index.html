@@ -1,0 +1,88 @@
+{% extends "layouts/base.html" %}
+
+
+
+{% block content %}
+<div class="text-center mb-5">
+    <h2>Script Translator</h2>
+    <p class="lead text-muted">{{ user.username }}</p>
+</div>
+
+<div class="card shadow-sm mb-5">
+    <div class="card-body">
+        <h3 class="card-title">Centralización de Configuraciones Huawei para Migración a Entorno Nokia SR 7750</h3>
+        <h4 class="card-subtitle mb-3 text-muted">Proyecto de Migración Tecnológica</h4>
+        <div class="card-text">
+            <p class="mb-3">
+                Esta plataforma tiene como objetivo <strong>automatizar y estandarizar</strong> el proceso de migración de configuraciones de equipos Huawei (NE40/ME60) a un entorno de alta disponibilidad basado en <strong>routers Nokia SR 7750</strong>, cumpliendo con los estándares de protocolos de telecomunicaciones (MPLS, BGP, VPRN, QoS) y garantizando la interoperabilidad entre fabricantes.
+            </p>
+
+            <h5 class="mt-4">Funcionalidades Clave:</h5>
+            <ul class="list-group list-group-flush mb-3">
+                <li class="list-group-item">
+                    <strong>Carga de Configuraciones Huawei</strong> - Almacenamiento seguro en base de datos para conversión al formato Nokia (SR OS).
+                </li>
+                <li class="list-group-item">
+                    <strong>Generación de Servicios Estándar Nokia</strong> - Creación automatizada de VPRN, GPS, SMTP/Internet y servicios DSLAM.
+                </li>
+                <li class="list-group-item">
+                    <strong>Migración a Alta Disponibilidad</strong> - Adaptación al entorno Nokia SR 7750 con IS-IS/TE y BGP-LU.
+                </li>
+            </ul>
+
+            <h5 class="mt-4">Contexto Tecnológico:</h5>
+            <p>
+                En telecomunicaciones, <strong>los protocolos (RFCs) son universales</strong>, pero cada fabricante implementa sus optimizaciones. Esta herramienta:
+            </p>
+            <ul>
+                <li>Elimina errores manuales en la migración</li>
+                <li>Acelera la transición a arquitectura Nokia SR</li>
+                <li>Filtra configuraciones obsoletas de NE40/ME60</li>
+            </ul>
+
+            <div class="alert alert-info mt-4">
+                <strong>Beneficios:</strong> Estandarización (Nokia SR OS), Auditoría de cambios, y configuración HA Ready (VRRP, MC-LAG).
+            </div>
+
+            <p class="text-muted mt-3">
+                <em>"Paso crítico en nuestra evolución hacia Cloud IP, donde interoperabilidad y automatización son fundamentales."</em>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Tarjeta: Upload Files -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">UPLOAD FILES</h5>
+                <p class="card-text">Sube archivos .cfg Huawei para conversión</p>
+                <a href="{% url 'cargar_archivos' %}" class="btn btn-primary">Iniciar Carga</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta: Generate Services -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">GENERATE SERVICES</h5>
+                <p class="card-text">Genera configuraciones Nokia SR OS</p>
+                <a href="{% url 'generate_service' %}" class="btn btn-success">Crear Servicios</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta: Documentation -->
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">DOCUMENTATION</h5>
+                <p class="card-text">Guías de migración Huawei-Nokia</p>
+                <a href="{% url 'documentation' %}" class="btn btn-info">Ver Documentos</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

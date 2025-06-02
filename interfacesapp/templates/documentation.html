@@ -1,0 +1,99 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+{% load static %}
+<div class="container mt-5">
+    
+    <style>
+    /* Contenedor del carrusel con relación de aspecto 16:9 */
+    .carousel-container {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        overflow: hidden;
+    }
+    
+    /* Imágenes que se adaptan al contenedor */
+    .carousel-inner, .carousel-item, .carousel-item img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    /* Botones de navegación negros */
+    .carousel-control-prev, .carousel-control-next {
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    /* Títulos separados debajo del carrusel */
+    .carousel-caption-external {
+        padding: 15px 0;
+        text-align: center;
+        background: #f8f9fa;
+        color: #333;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <!-- Carrusel con contenedor de relación de aspecto -->
+        <div id="uniformCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-container">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <img src="{% static "img/huawei_wallpaper.jpg" %}" class="d-block w-100" alt="Imagen 1">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Imagen 1</h5>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <img src="{% static "img/nokia_1.jpg" %}" class="d-block w-100" alt="Imagen 2">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Imagen 2</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controles de navegación -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#uniformCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#uniformCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+        
+        <!-- Título externo debajo del carrusel -->
+        <div class="carousel-caption-external">
+            <h3 id="carouselTitle">Título de la Imagen 1</h3>
+            <p id="carouselDescription">Descripción correspondiente a la imagen actual</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Actualizar título y descripción cuando cambia el slide
+    document.getElementById('uniformCarousel').addEventListener('slid.bs.carousel', function (e) {
+        const activeTitle = e.relatedTarget.querySelector('.carousel-caption h5').textContent;
+        document.getElementById('carouselTitle').textContent = activeTitle;
+        
+        // Puedes agregar lógica para cambiar descripciones según el slide
+        const descriptions = [
+            "Descripción detallada de la primera imagen",
+            "Descripción detallada de la segunda imagen"
+        ];
+        document.getElementById('carouselDescription').textContent = descriptions[e.to];
+    });
+</script>
+{% endblock  %}

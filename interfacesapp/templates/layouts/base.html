@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Translator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "styles/styles.css" %}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Top Header -->
+    <header class="container-fluid bg-white bg-gradient py-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <div class="d-flex align-items-center mb-3 mb-md-0">
+                    <img src="{% static 'img/huawei.png' %}" alt="Huawei" class="logo-img me-2">
+                    <span class="brand-arrow mx-2 d-none d-md-block"><i class="bi bi-arrow-right"></i></span>
+                    <img src="{% static 'img/nokia.png' %}" alt="Nokia" class="logo-img ms-2">
+                </div>
+                <h1 class="h3 mb-0 text-center text-md-start text-primary">Script Translator</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Index' %}">
+                            <i class="bi bi-house-door me-1"></i> HOME
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cargar_archivos' %}">
+                            <i class="bi bi-upload me-1"></i> UPLOAD FILES
+                        </a>
+                    </li>
+                    <!-- Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" 
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-gear me-1"></i> GENERATE SERVICES
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="{% url 'generate_service' %}">
+                                <i class="bi bi-wifi me-2"></i>INTERNET SERVICES</a></li>
+                            <li><a class="dropdown-item" href="{% url 'generate_vpn' %}">
+                                <i class="bi bi-shield-lock me-2"></i>VPN SERVICES</a></li>
+                            <li><a class="dropdown-item" href="{% url 'generate_gps' %}">
+                                <i class="bi bi-geo-alt me-2"></i>GPS SERVICES</a></li>
+                            <li><a class="dropdown-item" href="{% url 'generate_smtp'%}">
+                                <i class="bi bi-envelope me-2"></i>SMTP SERVICES</a></li>
+                            <li><a class="dropdown-item" href="{% url 'generate_dslam'%}">
+                                <i class="bi bi-hdd-stack me-2"></i>DSLAM</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'documentation' %}">
+                            <i class="bi bi-file-earmark-text me-1"></i> DOCUMENTATION
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    {% if user.is_authenticated %}
+                        <span class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" 
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-fill m-2"></i>{{user.username}}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'logout'%}"><i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión</a>
+                                </li>
+                            </ul>
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-fill container my-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-4 mt-auto border-top">
+        <div class="container">
+            <ul class="list-unstyled d-flex flex-wrap justify-content-center mb-0">
+                <li class="mx-3 mb-2"><a href="#" class="text-decoration-none text-dark">
+                    <i class="bi bi-info-circle me-1"></i>Service Types</a></li>
+                <li class="mx-3 mb-2"><a href="#" class="text-decoration-none text-dark">
+                    <i class="bi bi-question-circle me-1"></i>How it works?</a></li>
+                <li class="mx-3 mb-2"><a href="#" class="text-decoration-none text-dark">
+                    <i class="bi bi-search me-1"></i>See more</a></li>
+                <li class="mx-3 mb-2"><a href="#" class="text-decoration-none text-dark">
+                    <i class="bi bi-envelope me-1"></i>Contact</a></li>
+            </ul>
+            <div class="text-center text-muted mt-3">
+                <small>&copy; {% now "Y" %} Script Translator. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

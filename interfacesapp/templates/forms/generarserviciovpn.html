@@ -1,0 +1,67 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+ <h2>Generar servicio de VPN</h2>
+        <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="bi bi-shield-lock me-2"></i>Configuración VPN
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="internetForm" method="POST">
+                            {% csrf_token %}
+                            <!-- Campo vpn-instance -->
+                            <div class="mb-3">
+                                <label for="opcionesDict">Selecciona una opción:</label>
+                                <select class="form-control" id="opcionesDict" name="vpn_instance">
+                                  {% for vpn in vpns %}
+                                        <option value="{{vpn.id}}">{{vpn.vpn_instance}}</option>
+                                  {% endfor %}
+                                </select>
+                            </div>
+                            <!-- Campo VLAN -->
+                            <div class="mb-3">
+                                <label for="vlanField" class="form-label">VLAN ID</label>
+                                <input type="number" 
+                                    class="form-control" 
+                                    id="vlanField" 
+                                    name="vlan"
+                                    min="1"
+                                    max="4094"
+                                    required
+                                    placeholder="Ej: 100">
+                                <div class="invalid-feedback">
+                                    Debe ser entre 1 y 4094
+                                </div>
+                            </div>
+                            
+                            <!-- Campo IP -->
+                            <div class="mb-3">
+                                <label for="ipField" class="form-label">Dirección IP</label>
+                                <input type="text" 
+                                    class="form-control" 
+                                    id="ipField" 
+                                    name="ip_address"
+                                    pattern="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
+                                    required
+                                    placeholder="Ej: 192.168.1.1">
+                                <div class="invalid-feedback">
+                                    Ingrese una IP válida
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 mt-3">
+                                <i class="bi bi-check-circle me-2"></i>Generar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock  %}

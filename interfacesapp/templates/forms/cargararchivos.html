@@ -1,0 +1,36 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<h2>Cargar Archivos</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="card p-4">
+    <div class="mb-3">
+        <label for="fileInputVpn" class="form-label">Seleccione el archivo para cargar las vpns</label>
+        <input class="form-control" type="file" id="fileInputVpn" name="file" accept=".txt">
+    </div>
+    <div class="mb-3">
+        <label for="fileInputInterface" class="form-label">Seleccione el archivo para cargar las interfaces de servicios</label>
+        <input class="form-control" type="file" id="fileInputInterface" name="files_interfaces" multiple accept=".txt">
+    </div>
+    <div class="mb-3">
+        <label for="fileInputRutas" class="form-label">Seleccione el archivo para cargar las rutas estáticas</label>
+        <input class="form-control" type="file" id="fileInputRutas" name="files_rutas" multiple accept=".txt">
+    </div>
+    <button type="submit" class="btn btn-primary">Procesar Archivos</button>
+    </div>
+</form>
+{% if result %}
+<div>
+    <ul>
+        {% for vpn in result %}
+            <li>
+                <p>
+                    <strong>{{vpn}}</strong>
+                </p>
+            </li>
+        {% endfor %}
+    </ul>    
+</div>
+{% endif %}
+{% endblock  %}
